@@ -13,14 +13,17 @@ class Channel
     /** @MongoDB\Field(type="hash") */
     private $content;
 
+    /** @MongoDB\Field(type="date") */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
+
     public function getId()
     {
         return $this->id;
-    }
-
-    public function setId($id): void
-    {
-        $this->id = $id;
     }
 
     public function getContent()
@@ -31,5 +34,15 @@ class Channel
     public function setContent($content): void
     {
         $this->content = $content;
+    }
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt($createdAt): void
+    {
+        $this->createdAt = $createdAt;
     }
 }

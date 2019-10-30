@@ -19,12 +19,9 @@ class MixerService
 
     public function storeDataFromExternalApi(): void
     {
-        $url = 'https://mixer.com/api/v1/channels?order=viewersCurrent:DESC&limit=20&where=languageId:eq:fr';
-
+        $url = 'https://mixer.com/api/v1/channels?limit=20&where=languageId:eq:fr';
         $response = $this->httpClient->request('GET', $url);
-        $statusCode = $response->getStatusCode();
         $data = $response->toArray();
-
         foreach ($data as $content) {
             $channel = new Channel();
             $channel->setContent($content);
