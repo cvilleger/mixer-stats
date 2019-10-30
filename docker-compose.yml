@@ -17,24 +17,21 @@ services:
       PHP_DISPLAY_ERRORS: 1
 
   database:
-    image: mysql:8.0
-    command: mysqld --default-authentication-plugin=mysql_native_password
+    image: mongo:4.2
     volumes:
-      - 'mysql_data:/var/lib/mysql'
+      - 'mongo_data:/data/db'
     environment:
-      MYSQL_DATABASE: symfonyweb
-      MYSQL_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    depends_on:
-      - database
+  mongo-express:
+    image: mongo-express
     ports:
-      - 8081:80
+      - 8081:8081
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: database
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root
 
 volumes:
-  mysql_data:
+  mongo_data:
     driver: local
