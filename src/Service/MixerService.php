@@ -22,12 +22,9 @@ class MixerService
         $url = 'https://mixer.com/api/v1/channels?limit=20&where=languageId:eq:fr';
         $response = $this->httpClient->request('GET', $url);
         $data = $response->toArray();
-        foreach ($data as $content) {
-            $channel = new Channel();
-            $channel->setContent($content);
-            $this->documentManager->persist($channel);
-        }
-
+        $channel = new Channel();
+        $channel->setContent($data);
+        $this->documentManager->persist($channel);
         $this->documentManager->flush();
     }
 }
