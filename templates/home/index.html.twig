@@ -11,6 +11,7 @@
             <th></th>
             <th>Viewers</th>
             <th>Followers</th>
+            <th>Game</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +20,7 @@
                 <th>{{ item.token }} {% if item.partnered %}<i class="material-icons">check</i>{% endif %}</th>
                 <td>{{ item.viewersCurrent }}</td>
                 <td>{{ item.numFollowers }}</td>
+                <td>{{ item.type.name }}</td>
             </tr>
         {% endfor %}
         </tbody>
