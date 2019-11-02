@@ -11,6 +11,7 @@
             <th></th>
             <th>Viewers</th>
             <th>Followers</th>
+            <th>Viewers/Followers</th>
             <th>Game</th>
         </tr>
         </thead>
@@ -20,12 +21,11 @@
                 <th>{{ item.token }} {% if item.partnered %}<i class="material-icons">check</i>{% endif %}</th>
                 <td>{{ item.viewersCurrent }}</td>
                 <td>{{ item.numFollowers }}</td>
+                <td>{{ (item.viewersCurrent / item.numFollowers)|round(5, 'floor') }}</td>
                 <td>{{ item.type.name }} ( {{ item.type.viewersCurrent }} )</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a class="btn tooltipped" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
-
 </div>
 {% endblock %}
