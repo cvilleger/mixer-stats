@@ -5,9 +5,7 @@ services:
     image: webdevops/php-nginx:7.3
     working_dir: /app
     ports:
-      - 80:80
-    depends_on:
-      - mongo
+      - 81:80
     volumes:
       - .:/app
     environment:
@@ -15,25 +13,3 @@ services:
       WEB_DOCUMENT_INDEX: index.php
       PHP_DATE_TIMEZONE: "Europe/Paris"
       PHP_DISPLAY_ERRORS: 1
-
-  mongo:
-    image: mongo:4.2
-    volumes:
-      - 'mongo_data:/data/db'
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
-
-  mongo-express:
-    image: mongo-express
-    depends_on:
-      - mongo
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: root
-
-volumes:
-  mongo_data:
-    driver: local

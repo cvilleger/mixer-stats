@@ -4,48 +4,26 @@
 
 {% block body %}
 <div class="container">
-    <div id="container"></div>
-    <table id="datatable">
+
+    <table class="striped">
         <thead>
         <tr>
             <th></th>
-            <th>Channel 1</th>
-            <th>Channel 2</th>
-            <th>Channel 3</th>
+            <th>Viewers</th>
+            <th>Followers</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th>01:00</th>
-            <td>5</td>
-            <td>30</td>
-            <td>12</td>
-        </tr>
-        <tr>
-            <th>02:00</th>
-            <td>1</td>
-            <td>9</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <th>03:00</th>
-            <td>0</td>
-            <td>5</td>
-            <td>1</td>
-        </tr>
-        <tr>
-            <th>04:00</th>
-            <td>40</td>
-            <td>10</td>
-            <td>11</td>
-        </tr>
-        <tr>
-            <th>05:00</th>
-            <td>3</td>
-            <td>5</td>
-            <td>0</td>
-        </tr>
+        {% for item in items %}
+            <tr>
+                <th>{{ item.token }} {% if item.partnered %}<i class="material-icons">check</i>{% endif %}</th>
+                <td>{{ item.viewersCurrent }}</td>
+                <td>{{ item.numFollowers }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
+    <a class="btn tooltipped" data-position="bottom" data-tooltip="I am a tooltip">Hover me!</a>
+
 </div>
 {% endblock %}

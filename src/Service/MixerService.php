@@ -2,29 +2,21 @@
 
 namespace App\Service;
 
-use App\Document\Channel;
-use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class MixerService
 {
     private $httpClient;
-    private $documentManager;
 
-    public function __construct(HttpClientInterface $httpClient, DocumentManager $documentManager)
+    public function __construct(HttpClientInterface $httpClient)
     {
         $this->httpClient = $httpClient;
-        $this->documentManager = $documentManager;
     }
 
-    public function storeDataFromExternalApi(): void
+    public function getData(): array
     {
-        $url = 'https://mixer.com/api/v1/channels?limit=20&where=languageId:eq:fr';
+        $url = 'https://mixer.com/api/v1/channels?order=viewersCurrent:DESC&limit=20&where=languageId:eq:fr';
         $response = $this->httpClient->request('GET', $url);
-        $data = $response->toArray();
-        $channel = new Channel();
-        $channel->setContent($data);
-        $this->documentManager->persist($channel);
-        $this->documentManager->flush();
+        return $response->toArray();
     }
 }
