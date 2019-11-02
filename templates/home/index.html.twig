@@ -18,7 +18,7 @@
         <tbody>
         {% for item in items %}
             <tr>
-                <th>{{ item.token }} {% if item.partnered %}<i class="material-icons">check</i>{% endif %}</th>
+                <th><a href="https://mixer.com/{{ item.token  }}">{{ item.token }}</a>{% if item.partnered %}<i class="material-icons">check</i>{% endif %}</th>
                 <td>{{ item.viewersCurrent }}</td>
                 <td>{{ item.numFollowers }}</td>
                 <td>{{ (item.viewersCurrent / item.numFollowers)|round(5, 'floor') }}</td>
