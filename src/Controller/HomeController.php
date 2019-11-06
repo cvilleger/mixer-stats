@@ -13,7 +13,6 @@ class HomeController extends AbstractController
      */
     public function index(MixerService $mixerService)
     {
-//        dump($mixerService->getData());
         return $this->render('home/index.html.twig', [
             'items' => $mixerService->getData(),
         ]);
